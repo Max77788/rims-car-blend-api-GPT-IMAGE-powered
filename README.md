@@ -23,7 +23,7 @@ A Flask-based REST API that blends car and wheel images using OpenAI's image edi
 1. Clone the repository
 2. Install dependencies:
 ```bash
-pip install flask openai pillow python-dotenv requests
+pip install -r requirements.txt
 ```
 3. Create a `.env` file in the project root:
 ```bash
