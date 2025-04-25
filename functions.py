@@ -58,13 +58,16 @@ def blend_car_and_wheel_images(car_image_path, wheel_image_path, resolution="lan
     with open(car_image_path, "rb") as car_file, \
          open(wheel_image_path, "rb") as wheel_file:
 
-        result = client.images.edit(
-            model="gpt-image-1",
-            image=[car_file, wheel_file],
-            prompt=prompt,
-            size=resolutions[resolution] if resolution else resolutions["landscape"],
-            quality="medium"
-        )
+        try:
+            result = client.images.edit(
+                model="gpt-image-1",
+                image=[car_file, wheel_file],
+                prompt=prompt,
+                size="1536x1024"  # or dynamic
+            )
+        except Exception as e:
+            print(f"OpenAI API error: {e}")
+            raise e  # Let it bubble up and be caught by the caller
     
     print("Received response from OpenAI API")
 

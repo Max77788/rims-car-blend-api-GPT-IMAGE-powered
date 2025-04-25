@@ -91,10 +91,15 @@ def blend_route():
         open(local_wheel_path, 'wb').write(wheel_buffer.getvalue())
         print(f"Saved wheel image to: {local_wheel_path}")
 
-        # Blend images via OpenAI
-        print(f"Calling blend_car_and_wheel_images with paths: {local_car_path}, {local_wheel_path}")
-        blended_b64 = blend_car_and_wheel_images(local_car_path, local_wheel_path, resolution=resolution)
-        print(f"Received blended image, length of base64: {len(blended_b64)} characters")
+        try:
+            print(f"Calling blend_car_and_wheel_images with paths: {local_car_path}, {local_wheel_path}")
+            blended_b64 = blend_car_and_wheel_images(local_car_path, local_wheel_path, resolution=resolution)
+            print(f"Received blended image, length of base64: {len(blended_b64)} characters")
+        except Exception as blend_error:
+            print(f"Error during blending: {blend_error}")
+            return jsonify({'error': 'Blending failed', 'details': str(blend_error)}), 500
+        
+        
         
         # Decode the Base64 into bytes
         blended_bytes = base64.b64decode(blended_b64)
