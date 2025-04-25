@@ -63,7 +63,8 @@ def blend_car_and_wheel_images(car_image_path, wheel_image_path, resolution="lan
                 model="gpt-image-1",
                 image=[car_file, wheel_file],
                 prompt=prompt,
-                size="1536x1024"  # or dynamic
+                size=resolutions[resolution],
+                quality="medium"
             )
         except Exception as e:
             print(f"OpenAI API error: {e}")
