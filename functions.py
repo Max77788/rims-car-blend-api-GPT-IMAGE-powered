@@ -46,7 +46,20 @@ def blend_car_and_wheel_images(car_image_path, wheel_image_path, resolution="lan
 
     # Define the prompt for blending
     prompt = f"""
-    Blend the car and wheel images together..
+    Blend the car and rim images together. 
+    10 out of 10 times do the following:
+    - change replace car's rims to the ones from the wheel image
+    - keep the car's original tires on the wheels
+    - keep the car's original color
+    - keep the car's original texture
+    - keep the car's original details
+    - keep the car's original shape
+    - keep the car's original size
+    - keep the car's original position
+    - keep the car's original orientation
+    - keep the car's original lighting
+    - keep the car's original background
+    - keep the car's original perspective
     """
     
     resolutions = {"square":"1024x1024", "portrait":"1024x1536", "landscape":"1536x1024"}
